@@ -14,7 +14,6 @@ void customer_queue(Mechanic *, Customer *, int, int);
 bool findMechanic(Appointment, int, Mechanic *, Customer);
 void queue_sort(int, Queue<Customer> &, Customer *);
 void print(int, int, Queue<Customer> &, Mechanic *, Customer *);
-void swap(Customer, Customer);
 
 int main() {
   int mechanics_available = 2, numCustomers = 3;
@@ -28,7 +27,6 @@ int main() {
 
   customer_queue(mechanics, customers, mechanics_available, numCustomers);
   queue_sort(numCustomers,line,customers);
-  cout<<2<<endl;
   print(numCustomers, mechanics_available, line, mechanics, customers);
 
   delete[] mechanics;
@@ -71,8 +69,7 @@ void customer_info(Customer *person, string filename, int numCustomers) {
   file.close();
 }
 
-void customer_queue(Mechanic *mechanics, Customer *customers, int numMechanics,
-                    int numCustomers) {
+void customer_queue(Mechanic *mechanics, Customer *customers, int numMechanics,int numCustomers) {
   for (int i = 0; i < numCustomers; i++) {
     Appointment customerAppointment = (customers + i)->getAppointment();
     bool appointmentFound = findMechanic(customerAppointment, numMechanics,
@@ -85,8 +82,7 @@ void customer_queue(Mechanic *mechanics, Customer *customers, int numMechanics,
   }
 }
 
-bool findMechanic(Appointment customerAppointment, int numMechanics,
-                  Mechanic *mechanics, Customer customers) {
+bool findMechanic(Appointment customerAppointment, int numMechanics, Mechanic *mechanics, Customer customers) {
   for (int i = 0; i < numMechanics; i++) {
     if ((mechanics + i)->isAvailable(customerAppointment)) {
       string ID = (mechanics + i)->getID();
@@ -99,10 +95,13 @@ bool findMechanic(Appointment customerAppointment, int numMechanics,
 } // error here
 
 void queue_sort(int size, Queue<Customer> &line, Customer *customers) {
+  Customer temp;
   for (int i = 0; i < size; i++) {
     for (int j = i + 1; j < size; j++) {
       if (customers[i] > customers[j]) {
-        swap(customers[i], customers[j]);
+        temp = customers[i];
+        customers[i] = customers[j];
+        customers[j] = temp;
       }
     }
   }
@@ -110,13 +109,8 @@ void queue_sort(int size, Queue<Customer> &line, Customer *customers) {
     line.Push(customers[i]);
   }
 }
-void swap(Customer a, Customer b) {
-  Customer temp = a;
-  a = b;
-  b = temp;
-}
-void print(int Csize, int Msize, Queue<Customer> &line, Mechanic *mechanics,
-           Customer *customers) {
+
+void print(int Csize, int Msize, Queue<Customer> &line, Mechanic *mechanics, Customer *customers) {
   Customer nextInLine;
   Appointment time;
   string name, id;
