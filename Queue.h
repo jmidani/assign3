@@ -16,7 +16,7 @@ class Queue{
     bool isEmpty(); // Checks if queue is empty
     bool isFull(); // Checks is queue is full
     void Push(T); // Enqueuing
-    T Pop(); // Dequeueing
+    void Pop(T&); // Dequeueing
     T Peek(); // Returns last element in queue
     ~Queue(); // Destructor
 };
@@ -42,7 +42,6 @@ Queue<T>::Queue(T *arr,int m){
 }
 template <class T>
 Queue<T>::~Queue(){
-    cout<<"destructor q";
     delete [] array;
 }
 template <class T>
@@ -71,7 +70,7 @@ void Queue<T>::Push(T value){
     }
 }
 template <class T>
-T Queue<T>::Pop(){
+void Queue<T>::Pop(T& object){
     if (isEmpty()){
         cout<<"Queue is empty, no data can be extracted.\n";
     }
@@ -79,7 +78,7 @@ T Queue<T>::Pop(){
         int current=front;
         front=(front+1)%max;
         counter=counter-1;
-        return *(array+current);
+        object= *(array+current);
     }
 }
 template <class T>
