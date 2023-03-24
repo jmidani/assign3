@@ -8,13 +8,12 @@ using namespace std;
 
 class Customer : public Person {
 private:
-  string MechanicID="0";
+  string MechanicID;
   Appointment appointment;
 
 public:
   Customer(); // Default constructor initalizes all to 0
-  Customer(string, string, int,
-           int); // Constructor initalizes id and appointment using input
+  Customer(string, string, int, int); // Constructor initalizes id and appointment using input
   void setMechanicID(string); // Sets Mechanic's ID
   void setAppointment(int, int);   // Sets Appointment time
   string getMechanicID();          // Returns Mechanic's ID

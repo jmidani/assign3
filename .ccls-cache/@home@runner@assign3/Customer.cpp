@@ -19,47 +19,65 @@ void Customer::setMechanicID(string id) {
 void Customer::setAppointment(int hr, int min) {
   if (hr >= 0 && hr < 24) {
     appointment.hour = hr;
-  } else {
+  } 
+  else {
     cout << "Hours cannot be set to less than 0 or more than 24.\n";
   }
   if (min >= 0 && min < 60) {
     appointment.minute = min;
-  } else {
+  } 
+  else {
     cout << "Minutes cannot be set to less than 0 or more than 59.\n";
   }
 }
-string Customer::getMechanicID() { return MechanicID; }
 
-Appointment Customer::getAppointment() { return appointment; }
+string Customer::getMechanicID() { 
+  return MechanicID; 
+}
+
+Appointment Customer::getAppointment() { 
+  return appointment; 
+}
 
 bool Customer::operator<(Customer x) {
+  
+  // Compares hours
   if (appointment.hour < x.appointment.hour) {
     return true;
-  } else if (appointment.hour == x.appointment.hour &&
-             appointment.minute < x.appointment.minute) {
+  } 
+  // If hours name compare minutes
+  else if (appointment.hour == x.appointment.hour && appointment.minute < x.appointment.minute) {
     return true;
-  } else if (appointment.hour == x.appointment.hour &&
-             appointment.minute == x.appointment.minute) {
+  } 
+  // If hours and minutes the same, compare mechanic ID
+  else if (appointment.hour == x.appointment.hour && appointment.minute == x.appointment.minute) {
     if (MechanicID < x.MechanicID) {
       return true;
     }
   }
     return false;
   }
+
   bool Customer::operator>(Customer x) {
+    // Compares hours
     if (appointment.hour > x.appointment.hour) {
       return true;
-    } else if (appointment.hour == x.appointment.hour &&
+    } 
+    // If hours name compare minutes
+    else if (appointment.hour == x.appointment.hour &&
                appointment.minute > x.appointment.minute) {
       return true;
-    } /*else if (appointment.hour == x.appointment.hour &&
+    } 
+    // If hours and minutes the same, compare mechanic ID
+    else if (appointment.hour == x.appointment.hour &&
               appointment.minute == x.appointment.minute) {
       if (MechanicID > x.MechanicID) {
         return true;
       }
-    }*/
+    }
     return false;
   }
+
   bool Customer::operator==(Customer x) {
     if (appointment.hour == x.appointment.hour &&
         appointment.minute == x.appointment.minute) {

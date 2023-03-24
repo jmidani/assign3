@@ -6,8 +6,8 @@ using namespace std;
 struct Appointment{
     int hour=0; // Hour from 00-23
     int minute=0; // Minute from 0-59
-  void print(){
-    cout<<hour<<":"<<minute<<endl;
-  }
+    void print(){
+    cout<<hour<<":"<<minute<<endl; // Prints time
+    }
 };
 #endif

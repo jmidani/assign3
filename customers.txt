@@ -3,7 +3,13 @@ Ahmed
 00
 Sara
 4
-00
+45
 Kareem
 2
 15
+Tamer
+6
+50
+Aya
+6
+50

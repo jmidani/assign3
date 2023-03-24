@@ -21,7 +21,7 @@ class Mechanic: public Person{
     Mechanic &setAppointment(Appointment); // Sets appointment and sorts all ascendingly
     int getCounter(); // Gets current number of appointments
     Appointment getAppointments(int); // Gets nth appointment
-    void printAppointments();
-    ~Mechanic();
+    void printAppointments(); // Prints all appointments mechanic has (for testing purposes)
+    ~Mechanic(); // Destructor deletes appointment array
 };
 #endif
